@@ -17,12 +17,36 @@ const BlazeSdkReactNative = NativeModules.BlazeSdkReactNative
       }
     );
 
-export function initiate(payload: Record<string, unknown>) {
-  BlazeSdkReactNative.initiate(JSON.stringify(payload));
+type CallbackFn = (callback: Record<string, unknown>) => void;
+
+export function initiate(
+  payload: Record<string, unknown>,
+  callbackFn: CallbackFn
+) {
+  BlazeSdkReactNative.initiate(JSON.stringify(payload), (e: string) => {
+    callbackFn(safeParseJSON(e));
+  });
 }
 
 export function process(payload: Record<string, unknown>) {
   BlazeSdkReactNative.process(JSON.stringify(payload));
 }
 
-export default { initiate, process };
+export function handleBackPress(): boolean {
+  return BlazeSdkReactNative.handleBackPress();
+}
+
+export function terminate() {
+  BlazeSdkReactNative.terminate();
+}
+
+// utils
+function safeParseJSON(jsonString: string): Record<string, unknown> {
+  try {
+    return JSON.parse(jsonString);
+  } catch (e) {
+    return {};
+  }
+}
+
+export default { initiate, process, handleBackPress, terminate };
