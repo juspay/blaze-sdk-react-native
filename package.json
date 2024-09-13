@@ -1,6 +1,6 @@
 {
-  "name": "blaze-sdk-react-native",
-  "version": "0.0.1",
+  "name": "@juspay/blaze-sdk-react-native",
+  "version": "0.0.2",
   "description": "SDK for integrating Breeze 1CCO into your React Native Application",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
@@ -51,14 +51,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sinha-sahil/blaze-sdk-react-native.git"
+    "url": "git+https://github.com/juspay/blaze-sdk-react-native.git"
   },
   "author": "Sahil Sinha <sahilsinha.dar@gmail.com> (https://github.com/sinha-sahil)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sinha-sahil/blaze-sdk-react-native/issues"
+    "url": "https://github.com/juspay/blaze-sdk-react-native/issues"
   },
-  "homepage": "https://github.com/sinha-sahil/blaze-sdk-react-native#readme",
+  "homepage": "https://github.com/juspay/blaze-sdk-react-native#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
