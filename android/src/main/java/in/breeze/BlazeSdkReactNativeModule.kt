@@ -6,6 +6,8 @@ import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Promise
 import `in`.breeze.blaze.Blaze
 import org.json.JSONObject
+import com.facebook.react.bridge.Callback
+
 
 class BlazeSdkReactNativeModule(reactContext: ReactApplicationContext) :
   ReactContextBaseJavaModule(reactContext) {
@@ -29,15 +31,13 @@ class BlazeSdkReactNativeModule(reactContext: ReactApplicationContext) :
   // Exposed React Methods
 
   @ReactMethod
-  fun initiate(initiatePayload: String) {
+  fun initiate(initiatePayload: String, callback: Callback) {
     blaze = Blaze()
-    var act = getCurrentActivity()
-    var initiatePayloadJson = safeParseJson(initiatePayload)
+    val act = currentActivity
+    val initiatePayloadJson = safeParseJson(initiatePayload)
     if (act != null) {
-      blaze.initiate(act, initiatePayloadJson) { callbackEvent ->
-        run {
-          println("callbackEvent: "+callbackEvent.toString(2))
-        }
+      blaze.initiate(act, initiatePayloadJson) { result ->
+        callback.invoke(result.toString())
       }
     }
   }
