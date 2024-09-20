@@ -10,7 +10,7 @@ import {
   ToastAndroid,
 } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import BlazeSDK from 'blaze-sdk-react-native';
+import BlazeSDK from '@juspay/blaze-sdk-react-native';
 
 const containerViewStyle: StyleProp<ViewStyle> = {
   flex: 1,
