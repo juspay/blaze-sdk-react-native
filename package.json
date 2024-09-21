@@ -1,6 +1,6 @@
 {
   "name": "@juspay/blaze-sdk-react-native",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "SDK for integrating Breeze 1CCO into your React Native Application",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",

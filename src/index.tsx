@@ -1,4 +1,4 @@
-import { NativeModules, Platform } from 'react-native';
+import { DeviceEventEmitter, NativeModules, Platform } from 'react-native';
 
 const LINKING_ERROR =
   `The package 'blaze-sdk-react-native' doesn't seem to be linked. Make sure: \n\n` +
@@ -19,13 +19,21 @@ const BlazeSdkReactNative = NativeModules.BlazeSdkReactNative
 
 type CallbackFn = (callback: Record<string, unknown>) => void;
 
+let callbackFunction = (_payload: Record<string, unknown>) => {};
+
+DeviceEventEmitter.addListener('blaze-callback', (data: unknown) => {
+  const parsedData = safeParseUnknown(data);
+  if (parsedData !== null) {
+    callbackFunction(parsedData);
+  }
+});
+
 export function initiate(
   payload: Record<string, unknown>,
   callbackFn: CallbackFn
 ) {
-  BlazeSdkReactNative.initiate(JSON.stringify(payload), (e: string) => {
-    callbackFn(safeParseJSON(e));
-  });
+  callbackFunction = callbackFn;
+  BlazeSdkReactNative.initiate(JSON.stringify(payload));
 }
 
 export function process(payload: Record<string, unknown>) {
@@ -41,6 +49,14 @@ export function terminate() {
 }
 
 // utils
+
+function safeParseUnknown(data: unknown): Record<string, unknown> | null {
+  if (typeof data === 'string') {
+    return safeParseJSON(data);
+  }
+  return null;
+}
+
 function safeParseJSON(jsonString: string): Record<string, unknown> {
   try {
     return JSON.parse(jsonString);
