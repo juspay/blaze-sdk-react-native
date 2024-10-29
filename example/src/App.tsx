@@ -7,10 +7,10 @@ import {
   StatusBar,
   type StyleProp,
   type ViewStyle,
-  ToastAndroid,
 } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import BlazeSDK from '@juspay/blaze-sdk-react-native';
+import { Alert } from 'react-native';
 
 const containerViewStyle: StyleProp<ViewStyle> = {
   flex: 1,
@@ -121,14 +121,25 @@ export default function App() {
   };
 
   const initiateSDK = () => {
-    ToastAndroid.show('Initiating SDK', ToastAndroid.SHORT);
     BlazeSDK.initiate(createSDKPayload(createInitiatePayload()), (e) => {
-      console.log(e);
+      console.log('Callback: ', e);
+
+      // show Alert
+      Alert.alert(
+        'Callback',
+        JSON.stringify(e),
+        [
+          {
+            text: 'OK',
+            onPress: () => console.log('OK Pressed'),
+          },
+        ],
+        { cancelable: false }
+      );
     });
   };
 
   const processSDK = () => {
-    ToastAndroid.show('Process SDK', ToastAndroid.SHORT);
     BlazeSDK.process(createSDKPayload(createProcessPayload()));
   };
 
