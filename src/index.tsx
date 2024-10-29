@@ -1,4 +1,4 @@
-import { DeviceEventEmitter, NativeModules, Platform } from 'react-native';
+import { NativeEventEmitter, NativeModules, Platform } from 'react-native';
 
 const LINKING_ERROR =
   `The package 'blaze-sdk-react-native' doesn't seem to be linked. Make sure: \n\n` +
@@ -21,7 +21,9 @@ type CallbackFn = (callback: Record<string, unknown>) => void;
 
 let callbackFunction = (_payload: Record<string, unknown>) => {};
 
-DeviceEventEmitter.addListener('blaze-callback', (data: unknown) => {
+const eventEmitter = new NativeEventEmitter(BlazeSdkReactNative);
+
+eventEmitter.addListener('blaze-callback', (data: unknown) => {
   const parsedData = safeParseUnknown(data);
   if (parsedData !== null) {
     callbackFunction(parsedData);
