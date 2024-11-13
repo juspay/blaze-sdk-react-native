@@ -1,6 +1,6 @@
 PODS:
-  - blaze-sdk-react-native (0.0.15):
-    - BlazeSDK (= 0.1.0)
+  - blaze-sdk-react-native (0.0.19):
+    - BlazeSDK (= 0.2.0)
     - DoubleConversion
     - glog
     - hermes-engine
@@ -21,7 +21,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - BlazeSDK (0.1.0)
+  - BlazeSDK (0.2.0)
   - boost (1.84.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.75.3)
@@ -1725,8 +1725,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  blaze-sdk-react-native: b166ae3f4c8785bf36b089e1d11e6b15a425c6ad
-  BlazeSDK: 77f9c1a89ae63219a20db06ef8c446a5552866a5
+  blaze-sdk-react-native: e42b7ffc8c672d9af8cfa96c538f9b6b7d5947ae
+  BlazeSDK: eb13425e886d13bf4e2066c7fa3a6567941321e6
   boost: 4cb898d0bf20404aab1850c656dcea009429d6c1
   DoubleConversion: 76ab83afb40bddeeee456813d9c04f67f78771b5
   FBLazyVector: 7b438dceb9f904bd85ca3c31d64cce32a035472b

@@ -7,6 +7,7 @@ import {
   StatusBar,
   type StyleProp,
   type ViewStyle,
+  BackHandler,
 } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import BlazeSDK from '@juspay/blaze-sdk-react-native';
@@ -116,6 +117,16 @@ function createProcessPayload() {
 export default function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
+  BackHandler.addEventListener('hardwareBackPress', () => {
+    const handleBackPress = BlazeSDK.handleBackPress();
+    if (handleBackPress) {
+      // Skip this backpress event, Blaze SDK will handle the event
+      return false;
+    }
+
+    return true;
+  });
+
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
@@ -143,6 +154,10 @@ export default function App() {
     BlazeSDK.process(createSDKPayload(createProcessPayload()));
   };
 
+  const terminateSDK = () => {
+    BlazeSDK.terminate();
+  };
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
@@ -157,6 +172,7 @@ export default function App() {
         <View style={containerViewStyle}>
           <Button title="Initiate" onPress={initiateSDK} />
           <Button title="Process" onPress={processSDK} />
+          <Button title="Terminate" onPress={terminateSDK} />
         </View>
       </ScrollView>
     </SafeAreaView>
