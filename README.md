@@ -1,4 +1,4 @@
-# blaze-sdk-react-native
+# Blaze SDK React Native
 
 Blaze SDK React Native is a SDK which helps you integrate Breeze 1CCO and its services seamlessly to your React Native app running on Android/iOS.
 
@@ -102,4 +102,22 @@ Call the process method on the Blaze instance with the process payload to start 
 
 ```javascript
 BlazeSDK.process(processSDKPayload)
+```
+
+### Step 4: Handling Hardware  Back Press
+
+For making the hardware back button work as expected, you need to call the `handleBackPress` method on the Blaze instance.
+The method should be called in the `hardwareBackPress` event listener of your screen.
+This method returns a boolean value which indicates if you need to handle back press or not.
+
+```javascript
+BackHandler.addEventListener('hardwareBackPress', () => {
+  const handleBackPress = BlazeSDK.handleBackPress();
+  if (handleBackPress) {
+    // write your back press handling logic here
+    return false;
+  }
+  // Skip Back press events if Blaze SDK is handling it
+  return true;
+});
 ```
