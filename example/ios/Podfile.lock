@@ -1,5 +1,5 @@
 PODS:
-  - blaze-sdk-react-native (0.1.0):
+  - blaze-sdk-react-native (0.2.0):
     - BlazeSDK (= 0.6.0)
     - DoubleConversion
     - glog
@@ -1725,7 +1725,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  blaze-sdk-react-native: f1c7ce6e2b5e30499423ed91f70fef3d4e2177de
+  blaze-sdk-react-native: c3bc0b5079a67c247f2c0008456a4e30767f8e58
   BlazeSDK: 479b4b15f212fe330698bb9497c027660c7f2edd
   boost: 4cb898d0bf20404aab1850c656dcea009429d6c1
   DoubleConversion: 76ab83afb40bddeeee456813d9c04f67f78771b5
